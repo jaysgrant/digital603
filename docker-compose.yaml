@@ -3,6 +3,7 @@ version: "3"
 services:
 
   digital603-build:
+    container_name: www-digital-603-builder
     image: nhjay/digital-603:latest
     build: .
 
@@ -25,7 +26,7 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
-      - ./public/:/var/www/html/
+      - ./public:/var/www/html
 
 networks:
   proxy:
