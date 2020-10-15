@@ -5,7 +5,10 @@ services:
   www-hugo:
     image: klakegg/hugo:0.74.3-ext-ubuntu
     container_name: www-hugo-digital603
-    command: server
+    command: 
+      - server
+      - -b https://www.digital603.com
+      - -t terminal
     volumes:
       - ".:/src"
     ports:
