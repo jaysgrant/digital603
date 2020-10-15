@@ -24,7 +24,6 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
       - HUGO_ENV=production
-      - HUGO_BIND=192.168.1.240
 
 networks:
   proxy:
