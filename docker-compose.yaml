@@ -3,7 +3,7 @@ version: "3"
 services:
 
   www-hugo:
-    image: klakegg/hugo:0.74.3-ext-alpine
+    image: klakegg/hugo:0.74.3-ext-ubuntu
     container_name: www-hugo-digital603
     command: server
     volumes:
