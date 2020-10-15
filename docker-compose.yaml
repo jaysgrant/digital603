@@ -7,7 +7,7 @@ services:
     container_name: www-hugo-digital603
     command: 
       - server
-      - -b https://www.digital603.com/
+      - -t terminal
     volumes:
       - ".:/src"
     ports:
