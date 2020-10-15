@@ -1,0 +1,28 @@
+---
+version: "3"
+services:
+
+  www-hugo:
+    image: klakegg/hugo:0.74.3-ext-alpine
+    command: server
+    volumes:
+      - ".:/src"
+    ports:
+      - "192.168.1.240:1313:1313"
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.network=proxy
+      - traefik.http.routers.www-hugo.rule=Host(`www.digital603.com`)
+      - traefik.http.routers.www-hugo.entrypoints=websecure
+      - traefik.http.services.www-hugo.loadbalancer.server.port=1313
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+
+networks:
+  proxy:
+    external: true
