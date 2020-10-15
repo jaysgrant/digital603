@@ -2,30 +2,30 @@
 version: "3"
 services:
 
-  www-hugo:
-    image: klakegg/hugo:0.74.3-ext-ubuntu
-    container_name: www-hugo-digital603
-    command: 
-      - server
-      - -t terminal
-    volumes:
-      - ".:/src"
-    ports:
-      - "1313:1313"
+  digital603-build:
+    image: nhjay/digital-603:latest
+    build: .
+
+  digital-603:
+    container_name: www-digital-603
+    image: nhjay/digital-603:latest
     restart: unless-stopped
     networks:
       - proxy
+    ports:
+      - "8084:80"
     labels:
       - traefik.enable=true
       - traefik.network=proxy
-      - traefik.http.routers.www-hugo.rule=Host(`www.digital603.com`)
-      - traefik.http.routers.www-hugo.entrypoints=websecure
-      - traefik.http.services.www-hugo.loadbalancer.server.port=1313
+      - traefik.http.routers.digital-603.rule=Host(`www.digital603.com`)
+      - traefik.http.routers.digital-603.entrypoints=websecure
+      - traefik.http.services.digital-603.loadbalancer.server.port=8084
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
-      - HUGO_ENV=production
+    volumes:
+      - ./public/:/var/www/html/
 
 networks:
   proxy:
