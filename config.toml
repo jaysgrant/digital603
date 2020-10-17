@@ -1,4 +1,4 @@
-baseURL = "http://digital603.com/"
+baseURL = "https://digital603.com/"
 languageCode = "en-us"
 title = "digital603"
 theme = "terminal"
@@ -47,7 +47,7 @@ paginate = 5
 [languages]
   [languages.en]
     languageName = "English"
-    title = "Terminal"
+    title = "digital603"
     subtitle = "A simple, retro theme for Hugo"
     owner = "Jason Grant"
     keywords = ""

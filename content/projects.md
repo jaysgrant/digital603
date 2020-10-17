@@ -11,3 +11,7 @@ draft: false
 - [Github Project](https://github.com/jaysgrant/dadjoke-ui)
 
 - [Working Demo](https://dadjokes.digital603.com/)
+
+> BOINC Client Setup on Kubernetes
+
+- [Github Project](https://github.com/jaysgrant/kubernetes_boinc_client_setup)

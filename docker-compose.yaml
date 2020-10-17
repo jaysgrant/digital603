@@ -2,31 +2,26 @@
 version: "3"
 services:
 
-  digital603-build:
-    container_name: www-digital-603-builder
-    image: nhjay/digital-603:latest
-    build: .
-
-  digital-603:
-    container_name: www-digital-603
-    image: nhjay/digital-603:latest
+  603web:
+    image: nginx:latest
+    container_name: digital603
     restart: unless-stopped
-    networks:
-      - proxy
     ports:
-      - "8084:80"
-    labels:
-      - traefik.enable=true
-      - traefik.network=proxy
-      - traefik.http.routers.digital-603.rule=Host(`www.digital603.com`)
-      - traefik.http.routers.digital-603.entrypoints=websecure
-      - traefik.http.services.digital-603.loadbalancer.server.port=8084
+      - "192.168.1.239:5001:80"
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
-      - ./public:/var/www/html
+      - ./public:/usr/share/nginx/html
+    networks:
+      - proxy
+    labels:
+      - "traefik.network=proxy"
+      - "traefik.enable=true"
+      - "traefik.http.routers.primaryweb.rule=Host(`www.digital603.com`)"
+      - "traefik.http.routers.primaryweb.entrypoints=websecure"
+      - "traefik.port=5001"
 
 networks:
   proxy:
